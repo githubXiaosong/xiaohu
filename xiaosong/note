@@ -1,0 +1,101 @@
+1115
+
+migration   迁移
+scheam  概要
+artisan 技工 工匠
+denide  拒签
+
+rollback 要想成功执行 composer必有可用镜像
+php artisan migrate  --pretend 假装执行
+
+1117
+php artisan make: 创建一个设么东西 冒号后面跟要创建的东西
+php artisan make:migration create_table_users --create=users 创建users表
+php artisan make:model User床啊
+laravel 在返回时会自动将数组转化为json 将字符串转化为html
+
+1118
+Hash::check($password,$hashed_password) 比对加密密码
+$hashed_password=Hash::make($password); 创建密码
+
+session('abc') 检测有没有 abc 没有返回null
+session('abc','default');
+session()->all();
+session()->forget('username');删除username
+session()->pull('username');返回并删除username
+return session('id')?:false; 有就返回没有false
+session()->flush(); 清空session
+session()->set('person.name','xiasong'); 直接方数组
+session()->set('person.name','xiaosong');
+session()->set('xiaosong.age',20);
+session()->set('person.name.xiaosong','xia');
+
+1119
+artisan 是一个工具 make方法才是创造 migration 是对应的数据表 model对应的数据模型
+ $table->string('phone')->unique()->nullable(); //+86 13081114886 指定唯一键
+$table->foreign('user_id')->references('id')->on('users'); 指定外键
+|unique:questions 验证 数据库唯一
+
+$validator = Validator::make($input, $rules, $messages);
+$messages = [
+      'same'    => 'The :attribute and :other must match.',
+      'size'    => 'The :attribute must be exactly :size.',
+      'between' => 'The :attribute must be between :min - :max.',
+      'in'      => 'The :attribute must be one of the following types: :values',
+  ];
+
+  $messages = [
+      'email.required' => 'We need to know your e-mail address!',
+  ];
+
+
+  'custom' => [
+      'email' => [
+          'required' => 'We need to know your e-mail address!',
+      ],
+  ],
+  ->keyBy('id'); 指定返回值中用哪个做键 必须在最后
+  skip 跳跃跳读
+  //route页面不能直接返回 true 或者false
+  //命名时 delete update 等系统关键字不要用
+  denied 拒绝拒签
+  1123
+  php artisan make:migration create_table_answer_user --create=answer_user 给轴表命名的时候必须按照两个单词的首字母的先后顺序来命名
+  中间轴 是为了处理多对多的关系而产生的  创建的一张发中间表 用来存储 中间的数据
+  $table->unique(['user_id','answer_id','vote']); 数据库设置唯一属性
+
+  1124
+
+  //        此句就可以直接存储 数据和绑定参数了
+  //        两个外键分别对应中间轴的'两端' 因为是从一个数据模型中来 所以就已经绑定了一个参数了 这里需要在attach 方法中在第一个参数中传入另一个 '轴的一端' 在第二个参数中传入一个其他属性参数的数组
+  //        从一个数据模型中来 就已经绑定了一个参数了 另一个 采纳数
+          $answer->users()->attach(session('user_id'),['vote'=>rq('vote')]);
+
+  $data->values(); 只取值的数组
+
+$data->sortBy(function($item){
+              return $item->created_at;
+            });
+            重新排序
+$data->sortByDesc(function($item){
+              return $item->created_at;
+            });
+            重新排序 倒序
+
+若不是通用API就写在每个model里面 若果是通用的API就写在 一个controller之中
+
+if( ! Hash::check($password,$hashed_password)) //一参传过来的password 未加密  二参 加密的密码
+
+$hashed_password=Hash::make($password);
+
+1125
+captcha 验证码
+generate 形成
+migration 本质上就是一系列对数据库结构的操作一系列操作是绑定在一起的 所以会有一个rollback方法来返回操作 可以是创建表 也可以是更改表的结构
+
+return rand(1000,9999); 返回两个参数之间的一个随机数
+
+time() 返回一个 时间
+
+pivot
+
