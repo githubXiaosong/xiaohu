@@ -101,3 +101,9 @@ pivot
 
 $data['question_num']=answerins()->where(['user_id'=>rq('id')])->count();   得到用户提出的问题数量 就是answer表中userid相同的
 $data['question_num']=$user->answers()->count();                            得到用户关注问题数量 就是answer_user表中userid相同的数量
+
+route
+
+release 释放 发布 发行
+
+在script的src 和 link的href的路径是是从public目录开始的

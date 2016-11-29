@@ -68,7 +68,7 @@ Route::group(['middleware'=>['web']],function(){//不开启web中间件是不能
 
     Route::get('/', function ()
     {
-        return view('welcome');
+        return view('index');
     });
 
 

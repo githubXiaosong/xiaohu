@@ -28,18 +28,11 @@ class CommonController extends Controller
             ->get()
             ->keyBy('id');
 
-
         $data=$questions->merge($answers);
         $data->sortByDesc(function($item){
             return $item->created_at;
         });
 
-
-
         return ['status'=>1,'data'=>$data];
-
-
-
-
     }
 }
