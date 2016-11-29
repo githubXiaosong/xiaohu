@@ -41,12 +41,17 @@ function rq($key=null)
     return ($key==null) ? Request::all() : Request::get($key);
 }
 
-function suc($merge_data=null){
+function suc($data=null){
 
     $ram=['status'=>1];
-    return $merge_data
-        ? array_merge($ram,$merge_data)
-        : $ram;
+
+    if($data)
+    {
+         $ram['data']=$data;
+
+        return $ram;
+    }
+    return $ram;
 }
 
 function err($msg='error',$data=null){

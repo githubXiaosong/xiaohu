@@ -268,9 +268,32 @@ class User extends Model
 
     public function get_userInfo()
     {
+//        有没有用户ID
+        if(!rq('id'))
+            return err('no user_id');
+//        有没有对应用户
+        $get=['id','username','avatar_url','email','phone'];
+        $user=$this->find(rq('id'),$get);
+        if(!$user)
+            return err('no that user');
+//        查询出来
+//            查询出vote数组
+        $vote=$user
+            ->answers()
+            ->newPivotStatement()
+            ->where(['user_id'=>rq('id')])
+            ->orderBy('created_at','desc')
+            ->get();
+
+        $data=$user->toArray();
+        $data['question_num']=quesins()->where(['user_id'=>rq('id')])->count();
+        $data['answer_num']=answerins()->where(['user_id'=>rq('id')])->count();
+        $data['question_focus']=$user->questions()->count();
+        $data['answer_vote']=$vote;
+//        返回数据
 
 
-        return 1;
+        return suc($data);
     }
 
 
@@ -289,5 +312,7 @@ class User extends Model
             ->withPivot('is_focus')
             ->withTimestamps();
     }
+
+//    关注和取消关注
 
 }
