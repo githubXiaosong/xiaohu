@@ -1,3 +1,60 @@
-body{
-    background: #000;
+*{
+    background: rgba(0,0,0,0.05);
 }
+body{
+
+}
+a{
+    text-decoration:none;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right;
+}
+
+.clearfix:after,
+.clearfix:before{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.navbar{
+    /*background: rgba(0,0,0,.1);*/
+}
+
+.navbar-item{
+    display: inline-block;
+    line-height: 2;
+    padding: 2px 4px;
+}
+
+.navbar-item:first-child{
+    margin-left: 4px;
+}
+
+.navbar-item:last-child{
+    margin-right: 4px;
+}
+
+
+.brand{
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.container{
+    width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+    background: #c0c0c0;
+    height: 1000px;
+}
+
+
+

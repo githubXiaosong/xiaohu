@@ -107,3 +107,27 @@ route
 release 释放 发布 发行
 
 在script的src 和 link的href的路径是是从public目录开始的
+
+1130
+strict 精确的精准的 严格的
+interpolate 插入
+
+controller 是继承的关系
+
+用angluar 和 ui-router 的好处是实现了所有的信息的ajax
+
+p:before/after
+{
+content:"台词：-";
+background-color:yellow;
+clear:both
+color:red;
+font-weight:bold;       CSS可以直接寻找元素之后然后在之前和之后添加内容并且指定样式 此方法常用于浮动的清除浮动
+}
+
+disable:inline-block 尽量在一行显示
+background: rgba(0,0,0,.1);  r g b a(透明度)
+line-height: 1.5;行高
+brand 商标 牌子
+
+
