@@ -130,4 +130,11 @@ background: rgba(0,0,0,.1);  r g b a(透明度)
 line-height: 1.5;行高
 brand 商标 牌子
 
+121
+在angular中的表单的提交不用 action 而是用ng-submit
+在写config/service/controller等的时候应该在function的时候为了防止提交到服务器的时候的压缩造成的变化而导致laravel不能识别 可以采取在船function的时候传一个数组然后在最后一位传对应的function 然后在前面的参数传入注入的依赖对应的字符串就不会应为压缩导致angluar不能识别了
+直接在页面中找任何Service都是找不到的 但是在js文件都是相互可见的 只有绑定到对应的controller的scope下面才能在页面中使用
+
+display: inline-block; 在一行显示
+
 
