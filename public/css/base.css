@@ -1,5 +1,10 @@
 *{
-    background: rgba(0,0,0,0.05);
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    /*background: rgba(0,0,0,0.05);*/
+
+
 }
 body{
 
@@ -24,8 +29,13 @@ a{
 }
 
 .navbar{
-    /*background: rgba(0,0,0,.1);*/
+    background: #a10;
+    color: #fff;
 }
+
+.navbar a{
+    color: rgba(255,255,255,.95);
+ }
 
 .navbar-item{
     display: inline-block;
@@ -52,7 +62,6 @@ a{
     width: 800px;
     margin-right: auto;
     margin-left: auto;
-    background: #c0c0c0;
     height: 1000px;
 }
 
@@ -60,3 +69,52 @@ a{
     display: inline-block;
 }
 
+.card{
+    margin: 2px;
+    margin-top: 8px;
+    padding: 5px;
+    padding-left: 10px;
+    display: block;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 2px 4px 2px rgba(0,0,0,.1);
+}
+
+.card input{
+    width: 90%;
+    padding: 5px;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    outline: none;
+
+}
+
+label,form{
+    display: block;
+}
+label{
+    margin: 4px 0;
+}
+
+.input-err-set{
+    color: #a10;
+}
+
+button{
+
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 5px;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    background: #fff;
+}
+button:hover{
+    background: #eeeeee;
+    cursor: pointer;
+}

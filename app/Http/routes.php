@@ -100,6 +100,10 @@ Route::group(['middleware'=>['web']],function(){//不开启web中间件是不能
         return userins()->get_userInfo();
     });
 
+    Route::any('api/user/exists',function(){
+        return userins()->exists();
+    });
+
     Route::any('api/question/add',function(){
         return quesins()->add();
     });

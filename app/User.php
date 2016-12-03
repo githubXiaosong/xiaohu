@@ -297,6 +297,15 @@ class User extends Model
     }
 
 
+    public function exists()
+    {
+        if(!rq('username'))
+            return err('no username');
+        $r=$this->where(['username'=>rq('username')])->first();
+
+        return suc(['exists'=>$r?true:false]);
+    }
+
     public function answers()
     {
         return $this
@@ -312,7 +321,6 @@ class User extends Model
             ->withPivot('is_focus')
             ->withTimestamps();
     }
-
 //    关注和取消关注
 
 }

@@ -48,6 +48,7 @@ angular.module('xiaohu',['ui.router'])
             //因为直接在页面中找任何Service都是找不到的 但是在js文件都是相互可见的 只有绑定到对应的controller的scope下面才能在页面中使用
             $scope.User=UserService;
         }
+
     ])
     //.service('UserService',function(){    以这个方式若在function中注入参数的时候会有一些问题 就是在上传到服务器进行和压缩的时候变量名会改变所以angluar会不认识
     //
