@@ -137,4 +137,17 @@ brand 商标 牌子
 
 display: inline-block; 在一行显示
 
+123
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;      所有的浏览器都会支持的弧边
 
+  display: block;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 2px 4px 2px rgba(0,0,0,.1); 一个突出的页面效果
+
+124
+
+$status.go('login');
+$status.go('user.login'); 需要注入

@@ -25,7 +25,7 @@ class User extends Model
             [
                 'username'=> 'unique:users,username|min:5|max:255',
                 'phone'=> 'unique:users,phone|min:5|max:11',
-                'password'=> 'min:8|max:24|alpha_dash'
+                'password'=> 'min:6|max:24|alpha_dash'
             ],
             [
                 'username.unique'=>'username is exists',
