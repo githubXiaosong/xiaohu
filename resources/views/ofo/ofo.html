@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html ng-app="ofo">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+</head>
+<body style="padding: 10% ; padding-top: 5%">
+    <div ></div>
+
+    <div style="margin-right: auto; margin-left: auto">
+        <button id="start" class="btn btn-primary" style="margin: auto;width: 40% ;float: right"  >借一辆</button>
+        <button id="open" class="btn btn-primary" style="margin: auto;width: 100% ;float: right; background: red ; margin-top: 2%; margin-bottom: 2%"  >开始</button>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>表格标题</th>
+            <th>表格标题</th>
+
+        </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+<div>
+
+
+</div>
+</body>
+
+
+<script  type="text/javascript">
+
+    var n= 100000;
+    var pwdOrmsg=null;
+    var orderno=null;
+
+
+    $("#open").click(function(){
+        setTimeout(doFor,100);
+    });
+
+
+    var doFor= function () {
+        $("#start").click();
+        setTimeout(doFor,2000);
+        n++;
+    };
+
+    $("#start").click(function(){
+        $.ajax({
+            type: "post",
+            url: "https://san.ofo.so/ofo/Api/v2/carno",
+            data: {
+                'source':"zh_CN",
+                'source-model':"Redmi Note 2",
+                'source-system':'5.0.2',
+                'lat':'37.975067',
+                'token':'28D9B360-B763-11E6-9E04-95DCC4616393',
+                'carno':n,
+                'lng':'114.51576'
+
+            },
+            datatype: "json",
+            success: function(result){
+
+                if(result['errorCode']==200) {
+                    pwdOrmsg=result['values']['info']['pwd'];
+                    orderno=result['values']['info']['orderno'];
+                    setTimeout(doEnd,81000);
+                }else{
+                    pwdOrmsg=result['msg'];
+
+                }
+
+
+                $("#tbody").append('<tr>' +
+                '<td>'+n+'</td>' +
+                '<td>'+pwdOrmsg+'</td>' +
+                '</tr>')
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+    var doEnd= function(){
+
+        $.ajax({
+            type: "post",
+            url: "https://san.ofo.so/ofo/Api/v2/end",
+            data: {
+                    'source': "zh_CN",
+                    'source-model': "Redmi Note 2",
+                    'source-system': '5.0.2',
+                    'lat': '37.975067',
+                    'token': '28D9B360-B763-11E6-9E04-95DCC4616393',
+                    'orderno': orderno,
+                    'lng': '114.51576'
+                },
+            datatype: "json",
+            success: function (result) {
+                setTimeout(doPay,2000);
+                },
+            error: function (err) {
+                    console.log(err);}
+        });
+    };
+
+
+
+
+
+        var doPay= function () {
+        $.ajax({
+            type: "post",
+            url: "https://san.ofo.so/ofo/Api/v2/pay",
+            data: {
+                'source':"zh_CN",
+                'source-model':"Redmi Note 2",
+                'source-system':'5.0.2',
+                'lat':'37.975067',
+                'token':'28D9B360-B763-11E6-9E04-95DCC4616393',
+                'orderno':orderno,
+                'lng':'114.51576'
+            },
+            datatype: "json",
+            success: function (result) {
+
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    };
+
+
+</script>
+</html>
+

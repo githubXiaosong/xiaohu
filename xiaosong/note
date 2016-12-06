@@ -151,3 +151,10 @@ display: inline-block; 在一行显示
 
 $status.go('login');
 $status.go('user.login'); 需要注入
+
+125
+ng-model 是独立于页面存在的
+直接写 ui-view就是子模块的数据
+
+只要是在*.blade.*中写的页面都是有laravel数据和laravel逻辑的可以使用的
+在laravel 会把 '/' 解压到public 目录下  但是 angluar 会把 '/' 解压到 127.0.0.1之中

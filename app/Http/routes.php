@@ -60,7 +60,10 @@ function err($msg='error',$data=null){
     return ['status'=>0,'msg'=>$msg];
 }
 
-
+function isLogin()
+{
+    return userins()->is_login();
+}
 
 Route::group(['middleware'=>['web']],function(){//不开启web中间件是不能使用session的
 

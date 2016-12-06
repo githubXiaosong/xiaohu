@@ -80,7 +80,16 @@ a{
     box-shadow: 0 2px 4px 2px rgba(0,0,0,.1);
 }
 
-.card input{
+#topForm{
+    display: inline-block;
+}
+#topForm button{
+    line-height: 0.8;
+}
+
+.card input,
+.card textarea
+{
     width: 90%;
     padding: 5px;
     border: 1px solid rgba(0,0,0,.1);
