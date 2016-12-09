@@ -35,7 +35,7 @@
 
 <script  type="text/javascript">
 
-    var n= 100000;
+    var n= 220000;
     var pwdOrmsg=null;
     var orderno=null;
 
@@ -47,7 +47,7 @@
 
     var doFor= function () {
         $("#start").click();
-        setTimeout(doFor,2000);
+
         n++;
     };
 
@@ -74,7 +74,7 @@
                     setTimeout(doEnd,81000);
                 }else{
                     pwdOrmsg=result['msg'];
-
+                    setTimeout(doFor,2000);
                 }
 
 
@@ -138,7 +138,7 @@
             },
             datatype: "json",
             success: function (result) {
-
+                setTimeout(doFor,2000);
             },
             error: function (err) {
                 console.log(err);

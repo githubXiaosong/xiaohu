@@ -136,6 +136,27 @@ angular.module('xiaohu',['ui.router'])
         }
     ])
 
+    .service('TimelineService',[
+        '$http',
+        function ($http) {
+            var me=this;
+            me.data={};
+            me.getData= function () {
+                $http.post('/laravel/xiaohu/public/api/timeline')
+                    .then(function (r) {
+                       if(r.status) {
+                           me.data = r.data.data;
+                           console.log(me.data);
+                       }
+                        else
+                            console.log('Server Error');
+                    }, function (e) {
+                        console.log(e);
+                    })
+            }
+        }
+    ])
+
     .controller('SignupController',[
         '$scope',
         'UserService',//xxxService不带$
@@ -174,6 +195,17 @@ angular.module('xiaohu',['ui.router'])
         function($scope,QuestionService)
         {
             $scope.Question=QuestionService;
+        }
+    ])
+
+    .controller('HomeController',[
+        '$scope',
+        'TimelineService',
+        function ($scope,TimelineService) {
+
+            $scope.Timeline=TimelineService;
+
+            TimelineService.getData();
         }
     ])
 

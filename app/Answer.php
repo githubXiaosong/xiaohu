@@ -154,7 +154,7 @@ class Answer extends Model
         $answer
             ->users()
             ->newPivotStatement()
-//            从这里开始就进入了另一个数据模型了
+//            从这里开始就进入了另一个数据模型了    进入的是那个中间的数据模型   就是轴模型 对应轴表
             ->where('user_id',session('user_id'))
             ->where('answer_id',rq('id'))
             ->delete();
@@ -171,12 +171,19 @@ class Answer extends Model
 
     }
 
-    public function users()
+    public function users()  //这个方法本质上就是返回对应的一对一或者一对多的数据模型 然后在其他的方法中去调用而已
     {
         return $this
-            ->belongsToMany('App\User')
+            ->belongsToMany('App\User')     //本质上描述的是一种关系 belongsToMany描述的一对多的关系  belongTo描述的是一种一对一的关系 调用的时候就会返回相应的对象
             ->withPivot('vote')
             ->withTimestamps();
+    }
+
+
+    public function user()
+    {
+        return $this
+            ->belongsTo('App\User');
     }
 
 

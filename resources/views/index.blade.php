@@ -5,6 +5,7 @@
     <title>Document</title>
     {{--默认是从public目录开始的  /就是跟目录的--}}
     <link rel="stylesheet" href="lib/normalize/normalize.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/base.css">
     <script src="lib/jquery/jquery.js"></script>
     <script src="lib/angular/angular.min.js"> </script>
@@ -19,21 +20,24 @@
             <a class="navbar-item brand" href="#home">晓乎</a>
                 <form ng-controller="QuestionController" id="topForm" ng-submit="Question.go_add_question()">
                     <input class="" type="text" ng-model="Question.add_data.title">
-                    <button type="submit">提问</button>
+                    <button   type="submit">提问</button>
                 </form>
             </div>
         </div>
 
         <div class="fr">
 
-            <a class="navbar-item" href="#home">首页</a>
-            @if(!isLogin())
-                <a class="navbar-item" href="#login">登录</a>
-                <a class="navbar-item" href="#signup">注册</a>
-            @else
-                <a class="navbar-item">{{ session('username') }}</a>
-                <a class="navbar-item" href="{{url('api/logout')}}">登出</a>
-            @endif
+            <ul class="nav nav-tabs">
+              <li >  <a class="navbar-item" href="#home">首页</a> </li>
+                @if(!isLogin())
+                    <li>    <a class="navbar-item" href="#login">登录</a> </li>
+                    <li>    <a class="navbar-item" href="#signup">注册</a> </li>
+                @else
+                    <li>  <a class="navbar-item">{{ session('username') }}</a> </li>
+                    <li>   <a class="navbar-item" href="{{url('api/logout')}}">登出</a> </li>
+                @endif
+            </ul>
+
         </div>
     </div>
     {{-- ui-view 指令对应template中的内容 --}}
@@ -46,8 +50,53 @@
 
 {{--.page .home--}}
 <script type="text/ng-template" id="home.tpl" >
-    <div class="home container" >
-        首页首页首页首页首页首页首页首页首页首页首页首页首页首页首页首页首页首页首页首页
+    <div class="home container" ng-controller="HomeController" >
+        <h1>最新动态</h1>
+
+        <div class="item-set">
+            <div class="item" ng-repeat="item in Timeline.data">
+                <hr/>
+                <div class="item-content">
+
+                    <h3 class="content-title"><strong>[: item.title :]</strong></h3>
+                    <h6 class="content-act">XXX,XXX,XXX等赞同了该回答</h6>
+                    <div class="content-owner">
+                        <h4 class="content-owner-name ">[: item.user.username :]</h4>
+                        <h6 ng-show="item.user.desc" class="content-owner-desc">[: item.user.desc :]</h6>
+                        <h6 ng-hide="item.user.desc" class="content-owner-desc">他没有签名哈哈哈</h6>
+                    </div>
+                    <div class="left-set">
+                        <span class="glyphicon glyphicon-hand-up" style="color: rgb(207, 0, 0); font-size: 22px;"></span>
+                        <span class="glyphicon glyphicon-hand-down" style="color: rgb(207, 0, 0); font-size: 22px;"></span>
+                    </div>
+                    <div class="content-main text-warning" >
+                        {{--有question_id 的是个回答 没有的是个问题--}}
+                        <p ng-hide="item.question_id">
+                            [: item.desc :]
+                        </p>
+                        <p ng-show="item.question_id">
+                            [: item.content :]
+                        </p>
+                    </div>
+
+                </div>
+                <div class="text-muted"> <strong>评论</strong></div>
+                <div class="comment-set">
+                    <div class="comment-item clearfix">
+                        <h5 class="comment-item-name"><i>小松</i></h5>
+                        <div class="comment-item-content text-muted">
+                            <p>
+                                不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道不知道
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
     </div>
 </script>
 

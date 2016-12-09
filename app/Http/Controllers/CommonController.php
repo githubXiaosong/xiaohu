@@ -16,13 +16,14 @@ class CommonController extends Controller
 
 //        这个orderBy limit skip 配合方法就是从数据库中批量取数据的
         $questions= quesins()->orderBy('created_at','desc')
+            ->with('user')
             ->limit($l['limit'])
             ->skip($l['skip'])
             ->get()
-
             ->keyBy('id');
 
         $answers= answerins()->orderBy('created_at','desc')
+            ->with('user')
             ->limit($l['limit'])
             ->skip($l['skip'])
             ->get()

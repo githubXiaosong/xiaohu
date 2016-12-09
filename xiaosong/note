@@ -158,3 +158,41 @@ ng-model 是独立于页面存在的
 
 只要是在*.blade.*中写的页面都是有laravel数据和laravel逻辑的可以使用的
 在laravel 会把 '/' 解压到public 目录下  但是 angluar 会把 '/' 解压到 127.0.0.1之中
+
+
+128
+.comment-item-name{
+    float: left;
+    width: 6%;
+    display: inline-block;
+    margin-bottom: 0px;
+}
+.comment-item-content{
+    float: right;
+    width: 94%;
+    margin-left: 30px;
+    display: inline-block;
+}                       回答 的 姓名和内容分割样式
+
+
+12-9
+$questions= quesins()->orderBy('created_at','desc')
+            ->with('user')          //with方法调用数据模型中对应的方法 返回方法返回得到关系对应的模型
+            ->limit($l['limit'])
+            ->skip($l['skip'])
+            ->get()
+            ->keyBy('id');
+
+
+
+    public function user()   //再给关系方法命名的时候  只能命名为已有属性的去掉'_'后面的名字后者加s 不然laravel就会找不到该属性     不加s一般为belongsTo 加s一般为belongToMany
+    {
+        return $this
+            ->belongsTo('App\User');
+    }
+
+    也就是说 只有在表中有对应的属性 "XX_后缀" 的时候才能才能查到 不然是查不到的
+
+ng-if 判断逻辑
+ng-show ng-hide 专门用来判断用户的显示隐藏结果
+
