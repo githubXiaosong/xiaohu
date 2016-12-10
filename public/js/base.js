@@ -140,18 +140,34 @@ angular.module('xiaohu',['ui.router'])
         '$http',
         function ($http) {
             var me=this;
-            me.data={};
+            me.data=[];
+            me.currentPage=1;
+            me.isBusy=false;
+            me.noMore=false;
             me.getData= function () {
-                $http.post('/laravel/xiaohu/public/api/timeline')
+                if(me.isBusy==true)
+                    return;
+                me.isBusy=true;
+
+                if(me.noMore==true)
+                    return;
+                $http.post('/laravel/xiaohu/public/api/timeline'
+                    ,{'page':me.currentPage}
+                )
                     .then(function (r) {
                        if(r.status) {
-                           me.data = r.data.data;
+                           if(r.data.data.length == 0)
+                                me.noMore=true;
+                           me.data = me.data.concat(r.data.data);
+                           me.currentPage++;
                            console.log(me.data);
                        }
                         else
                             console.log('Server Error');
                     }, function (e) {
                         console.log(e);
+                    }).finally(function () {
+                        me.isBusy=false;
                     })
             }
         }
@@ -202,10 +218,16 @@ angular.module('xiaohu',['ui.router'])
         '$scope',
         'TimelineService',
         function ($scope,TimelineService) {
-
+            var $win;
             $scope.Timeline=TimelineService;
-
             TimelineService.getData();
+
+            $win=$(window);
+            $win.on('scroll', function () {
+                if( ($win.scrollTop() - ( $(document).height() - $win.height() ) )  > -5 ){
+                    TimelineService.getData();
+                }
+            })
         }
     ])
 

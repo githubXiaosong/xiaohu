@@ -195,3 +195,12 @@ button:hover{
 .left-set span:hover{
     border: 1px solid red;
 }
+
+
+.default-comment p{
+    color: dimgray;
+}
+
+.refresh-show{
+    text-align: center;
+}

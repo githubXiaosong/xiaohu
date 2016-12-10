@@ -196,3 +196,19 @@ $questions= quesins()->orderBy('created_at','desc')
 ng-if 判断逻辑
 ng-show ng-hide 专门用来判断用户的显示隐藏结果
 
+
+//1210
+也就是说 只有在创建了和属性名+'_后缀' 之后的表中才能使用belongsTo和belongsToMany
+
+text-align:center 居中显示
+
+
+$win.scrollTop 向上划过的距离
+
+
+ if( ($win.scrollTop() - ( $(document).height() - $win.height() ) )  > -30 ){
+                    console.log(1);
+                    }    //滑动到底部
+
+js数组合并 data.concat(newData);
+js判断数组长度为0则没有 r.data.data.length

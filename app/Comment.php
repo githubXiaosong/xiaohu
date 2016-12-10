@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
+//评论的是多种的   同时可以针对问题 回答   同时也可以针对评论
 class Comment extends Model
 {
     //
@@ -121,5 +122,11 @@ class Comment extends Model
 
     }
 
+
+    public function user()
+    {
+        return $this
+            ->belongsTo('App\User');
+    }
 
 }
