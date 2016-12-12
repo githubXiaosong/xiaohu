@@ -163,6 +163,25 @@ Route::group(['middleware'=>['web']],function(){//不开启web中间件是不能
         dd(session()->all());
     });
 
+    Route::any('tpl/page/home',function(){
+       return view('page.home');
+    });
+
+    Route::any('tpl/page/login',function(){
+        return view('page.login');
+    });
+
+    Route::any('tpl/page/signup',function(){
+        return view('page.signup');
+    });
+
+    Route::any('tpl/page/question_add',function(){
+        return view('page.question_add');
+    });
+
+    Route::any('tpl/page/user',function(){
+        return view('page.user');
+    });
 });
 
 

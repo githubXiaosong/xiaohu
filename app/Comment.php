@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 //评论的是多种的   同时可以针对问题 回答   同时也可以针对评论
 class Comment extends Model
 {
-    //
+
     public function add()
     {
         //是否登录

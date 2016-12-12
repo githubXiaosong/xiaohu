@@ -150,6 +150,17 @@ class Answer extends Model
 // 如果 vote 小于 1 对应1   不是一对应2
         $vote =rq('vote') <=1 ? 1 :2;
 
+        $data=$answer
+            ->users()
+            ->newPivotStatement()
+            ->where('user_id',session('user_id'))
+            ->where('answer_id',rq('id'))
+            ->where('vote',rq('vote'))
+            ->first();
+        if($data){
+            return ['status'=>3,'msg'=>'it is tow same vote'];
+        }
+
 //      不管有没有顶或者踩  都删除 然后写入
         $answer
             ->users()

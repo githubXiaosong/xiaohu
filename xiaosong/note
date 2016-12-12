@@ -212,3 +212,16 @@ $win.scrollTop 向上划过的距离
 
 js数组合并 data.concat(newData);
 js判断数组长度为0则没有 r.data.data.length
+
+
+div p	选择 <div> 元素内部的所有 <p> 元素。	1
+div > p	选择父元素为 <div> 元素的所有 <p> 元素。
+
+if (typeof(a) == "undefined") { js 判断变量是否已经定义
+
+1212
+controller 应该是多样的 不应该用userController 而应该有userService 因为所有的都是采用的Service为主(相关的Controller引入) Controller为分支的
+
+
+前端和后端的传参的方式是不同的
+$stateParams 指定用/的方式传参数

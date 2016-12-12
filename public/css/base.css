@@ -182,19 +182,20 @@ button:hover{
 }
 
 .left-set{
-    margin-left: -2.5%;
+    margin-left: -7%;
     position: absolute;
 }
 
-.left-set span{
+.left-set button{
     border: 1px solid rgba(0,0,0,0);
     display: block;
     margin-bottom: 15px;
     cursor: pointer;
 }
-.left-set span:hover{
-    border: 1px solid red;
+.left-set button:disabled{
+    background: rgba(200,100,100,.3);
 }
+
 
 
 .default-comment p{

@@ -106,7 +106,8 @@ class User extends Model
         session()->forget('username');
         session()->forget('user_id');
 
-        return ['status'=>1,'msg'=>'succeed'];
+        return   redirect()->back();
+
     }
 
 
