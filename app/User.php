@@ -279,18 +279,22 @@ class User extends Model
             return err('no that user');
 //        查询出来
 //            查询出vote数组
-        $vote=$user
-            ->answers()
-            ->newPivotStatement()
-            ->where(['user_id'=>rq('id')])
-            ->orderBy('created_at','desc')
-            ->get();
+
+        /**
+         * 暂时先不反悔点赞 数据 或者不在此处返回点赞数据
+         */
+//        $vote=$user
+//            ->answers()
+//            ->newPivotStatement()
+//            ->where(['user_id'=>rq('id')])
+//            ->orderBy('created_at','desc')
+//            ->get();
 
         $data=$user->toArray();
         $data['question_num']=quesins()->where(['user_id'=>rq('id')])->count();
         $data['answer_num']=answerins()->where(['user_id'=>rq('id')])->count();
         $data['question_focus']=$user->questions()->count();
-        $data['answer_vote']=$vote;
+//        $data['answer_vote']=$vote;
 //        返回数据
 
 

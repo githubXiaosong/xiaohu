@@ -182,6 +182,8 @@ class Answer extends Model
 
     }
 
+
+
     public function users()  //这个方法本质上就是返回对应的一对一或者一对多的数据模型 然后在其他的方法中去调用而已
     {
         return $this
@@ -198,6 +200,11 @@ class Answer extends Model
     }
 
 
+    public function question()
+    {
+        return $this
+            ->belongsTo('App\Question');
+    }
 
 
 

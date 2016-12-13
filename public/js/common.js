@@ -7,6 +7,12 @@ angular.module('common',['answer'])
     .service('TimelineService',[
         '$http',
         'AnswerService',
+
+        /**
+         *  点赞功能是不是不该这么做?应该的问题表中有个字段？？？
+         * @param $http
+         * @param AnswerService
+         */
         function ($http,AnswerService) {
             var me=this;
             me.data=[];

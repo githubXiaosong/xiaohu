@@ -75,6 +75,9 @@ Route::group(['middleware'=>['web']],function(){//不开启web中间件是不能
     });
 
 
+    /**
+     * 各种model中的方法
+     */
     Route::any('api/user',function(){
         return userins()->signup();
     });
@@ -157,12 +160,10 @@ Route::group(['middleware'=>['web']],function(){//不开启web中间件是不能
         return commentins()->read();
     });
 
-    Route::any('api/timeline','CommonController@timeLine');
 
-    Route::any('test',function(){
-        dd(session()->all());
-    });
-
+    /**
+     * 各种返回页面tml的方法
+     */
     Route::any('tpl/page/home',function(){
        return view('page.home');
     });
@@ -175,13 +176,40 @@ Route::group(['middleware'=>['web']],function(){//不开启web中间件是不能
         return view('page.signup');
     });
 
-    Route::any('tpl/page/question_add',function(){
-        return view('page.question_add');
+    Route::any('tpl/page/question/add',function(){
+        return view('page.question.add');
     });
 
     Route::any('tpl/page/user',function(){
-        return view('page.user');
+        return view('page.user.user');
     });
+
+    Route::any('tpl/page/user/question',function(){
+        return view('page.user.question');
+    });
+
+    Route::any('tpl/page/user/answer',function(){
+        return view('page.user.answer');
+    });
+
+
+    /**
+     * controller中的各种API
+     */
+    Route::any('api/timeline','CommonController@timeLine');
+
+    Route::any('api/userdetails','CommonController@userDetails');
+
+    Route::any('api/getuseranswer','CommonController@getUserAnswer');
+
+    Route::any('api/getuserquestion','CommonController@getUserQuestion');
+
+
+    /**
+     *   测试API
+     */
+    Route::any('api/test','CommonController@test');
+
 });
 
 

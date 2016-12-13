@@ -205,3 +205,18 @@ button:hover{
 .refresh-show{
     text-align: center;
 }
+
+
+/*
+* 用户详情页面CSS
+*/
+
+.user-ind button{
+    padding-bottom: 15px;
+}
+
+
+
+ .btn-act{
+    border-bottom: 3px solid red;
+}

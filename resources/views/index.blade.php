@@ -38,7 +38,7 @@
                     <li>    <a class="navbar-item" href="#login">登录</a> </li>
                     <li>    <a class="navbar-item" href="#signup">注册</a> </li>
                 @else
-                    <li>  <a class="navbar-item" href="#user/{{session('user_id')}}">{{ session('username') }}</a> </li>
+                    <li>  <a class="navbar-item" href="#user/{{session('user_id')}}/question">{{ session('username') }}</a> </li>
                     <li>   <a class="navbar-item" href="{{url('api/logout')}}">登出</a> </li>
                 @endif
             </ul>
