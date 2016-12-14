@@ -39,11 +39,8 @@ angular.module('common',['answer'])
                             for(var key in r.data.data) {
                                 /**
                                  * 传入新的数据answerService 给新的数据进行计算vote赋值 然后判断有没有投过票 来决定 按钮的状态
-                                 * @type {Array}
                                  */
-                                ret=AnswerService.getVote(r.data.data[key].answer);
-                                r.data.data[key]['upVote']=ret['timesUp'];
-                                r.data.data[key]['downVote']=ret['timesDown'];
+                                AnswerService.getVote(r.data.data[key].answer);
                             }
                             me.data = me.data.concat(r.data.data);
                             me.currentPage++;
@@ -62,8 +59,12 @@ angular.module('common',['answer'])
              * @param vote,answer_id
              */
             me.setVote= function (vote,answer_id) {
-                AnswerService.setVote(vote,answer_id,me.data);
+                /**
+                 * AnswerService 可以统一处理getVote返回数据  但是AnswerService中的setVote方法和home页面的数据是耦合的 无法进行复用
+                  */
+                //AnswerService.setVote(vote,answer_id,me.data);
             }
+
         }
     ])
 

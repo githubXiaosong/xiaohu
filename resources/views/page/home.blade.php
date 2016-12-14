@@ -7,13 +7,15 @@
 
             <div class="item-content">
 
-                <h3 class="content-title"><strong>[: item.question.title :]</strong></h3>
+                <a href="#/question/details/[:item.question.id:]">
+                    <h3 class="content-title"> <strong>[: item.question.title :]</strong> </h3>
+                </a>
                 <h6 class="content-act">XXX,XXX,XXX等赞同了该回答</h6>
                 <div class="left-set">
                   {{--item.hasUp [: item.answer.hasUp :]--}}
                     {{--item.hasDown  [: item.answer.hasDown :]--}}
-                    <button ng-disabled="item.answer.hasUp || {{ session('user_id')?0:1 }}"  ng-click="Timeline.setVote(1,item.answer.id)" class="glyphicon glyphicon-hand-up" style="color: rgb(207, 0, 0); font-size: 18px;">  [: item.upVote :] </button>
-                    <button ng-disabled="item.answer.hasDown || {{ session('user_id')?0:1}}"  ng-click="Timeline.setVote(2,item.answer.id)" class="glyphicon glyphicon-hand-down" style="color: rgb(207, 0, 0); font-size: 18px;"> [: item.downVote :]</button>
+                    <button ng-disabled="item.answer.hasUp "  ng-click="Timeline.setVote(1,item.answer.id)" class="glyphicon glyphicon-hand-up" style="color: rgb(207, 0, 0); font-size: 18px;">  [: item.answer.timesUp :] </button>
+                    <button ng-disabled="item.answer.hasDown "  ng-click="Timeline.setVote(2,item.answer.id)" class="glyphicon glyphicon-hand-down" style="color: rgb(207, 0, 0); font-size: 18px;"> [: item.answer.timesDown :]</button>
                 </div>
                 <div class="content-owner">
                     <h4 class="content-owner-name ">[: item.answer.user.username :]</h4>

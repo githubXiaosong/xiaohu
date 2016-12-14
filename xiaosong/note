@@ -251,3 +251,15 @@ service 应该是多个controller的管理者 负责汇总处理所有的数据�
 controller是不需要继承的 直接在html中
 
 service之中应该是包含所有相关逻辑跨越页面的
+
+belongsToMany和hasMany是相对应的  belongsToMang是本身model包含对应的字段   hasMany是对应的字段包含指向自己model的外键
+---------------------
+belongTo        本身指向对应
+
+belongsToMany   本身指向对应
+
+hasMany         对应指向本身
+
+hasOne          对应指向本身
+-----------------
+

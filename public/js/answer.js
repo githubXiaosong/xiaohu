@@ -1,7 +1,8 @@
 angular.module('answer',[])
     .service('AnswerService',[
          '$http',
-         function ($http) {
+        '$state',
+         function ($http,$state) {
              var his={
                  id:$('html').attr('user-id')
              }
@@ -11,9 +12,9 @@ angular.module('answer',[])
 
              var me=this;
              /**
-              * 提取answer数据中的vote
+              * 提取answer数据中的vote  给answer设置timesUp/timeDown 和 根据用户的判断是否投过票 来决定按钮的显示情况
               * @param answer
-              * @returns {Array} vote的键值对
+              * @
               */
              me.getVote = function (answer) {
                  var data=[];
@@ -41,10 +42,9 @@ angular.module('answer',[])
                     }
 
                 }
-                 data['timesUp']=timesUp;
-                 data['timesDown']=timesDown;
+                 answer['timesUp']=timesUp;
+                 answer['timesDown']=timesDown;
 
-                return data;
             }
              /**
               *  传入vote 调用服务器接口 并且更新页面
@@ -52,6 +52,15 @@ angular.module('answer',[])
               * @returns {number}  成功返回0 失败返回-1
               */
              me.setVote = function (vote,answer_id,data) {
+
+                 /**
+                  * 没有登录直接T
+                  */
+                 if(!his.id) {
+                     $state.go('login');
+                     return;
+                 }
+
 
                  /**
                   * 先执行逻辑若返回结果不是1 怎反执行逻辑
@@ -63,14 +72,14 @@ angular.module('answer',[])
                          if(vote==1) {
                              data[key].answer.hasUp=true;
                              data[key].answer.hasDown=false;
-                             data[key]['upVote']++;
-                             data[key]['downVote']--;
+                             data[key].answer['timesUp']++;
+                             data[key].answer['timesDown']--;
                          }
                          if(vote==2) {
                              data[key].answer.hasUp=false;
                              data[key].answer.hasDown=true;
-                             data[key]['upVote']--;
-                             data[key]['downVote']++;
+                             data[key].answer['timesUp']--;
+                             data[key].answer['timesDown']++;
                          }
                          break;
                      }
@@ -94,14 +103,14 @@ angular.module('answer',[])
                                     if(vote==1) {
                                         data[key].answer.hasUp=false;
                                         data[key].answer.hasDown=true;
-                                        data[key]['upVote']--;
-                                        data[key]['downVote']++;
+                                        data[key].answer['timesUp']--;
+                                        data[key].answer['timesDown']++;
                                     }
                                     if(vote==2) {
                                         data[key].answer.hasUp=true;
                                         data[key].answer.hasDown=false;
-                                        data[key]['upVote']++;
-                                        data[key]['downVote']--;
+                                        data[key].answer['timesUp']++;
+                                        data[key].answer['timesDown']--;
                                     }
                                     break;
                                 }

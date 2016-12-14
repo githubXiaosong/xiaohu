@@ -135,7 +135,7 @@ class Question extends Model
         $id=$_id ? :rq('id');
         if(!$id)
             return null;
-        return  $this->find( $id )?:null;
+        return  $this->where('id',$id )->with('user')->first()?:null;
     }
 
 
@@ -143,6 +143,26 @@ class Question extends Model
     {
         return $this
             ->belongsTo('App\User');
+    }
+
+    /**问题所对应的答案
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function answers()
+    {
+        return $this
+            ->hasMany('App\answer');
+    }
+
+    /**问题所对应的答案以及答案的点赞和用户信息
+     * @return
+     */
+    public function answers_user_users()
+    {
+        return $this
+            ->answers()
+            ->with('user')
+            ->with('users');
     }
 
 

@@ -34,13 +34,25 @@ angular.module('xiaohu',['ui.router','user','question','common'])
 
                 .state('question',{
                     abstract:true,
+                    controller:'QuestionController',  //没有html层级关系也可以指定controller 克先执行一遍
                     url:'/question',
                     template:'<div ui-view></div>' //先在页面的script中寻找这个页面 若没有则像服务器端申请页面
                 })
 
+            /**
+             * 添加问题页面
+             */
                 .state('question.add',{
                     url:'/add',//这里的/不是相对根目录而是相对上一层
                     templateUrl:'/laravel/xiaohu/public/tpl/page/question/add' //先在页面的script中寻找这个页面 若没有则像服务器端申请页面
+                })
+
+            /**
+             * 问答详情页面
+             */
+                .state('question.details',{
+                    url:'/details/:id',//这里的/不是相对根目录而是相对上一层
+                    templateUrl:'/laravel/xiaohu/public/tpl/page/question/details' //先在页面的script中寻找这个页面 若没有则像服务器端申请页面
                 })
 
 
@@ -57,6 +69,7 @@ angular.module('xiaohu',['ui.router','user','question','common'])
                     abstract:true,
                     url:'/user/:id',//这里的/不是相对根目录而是相对上一层
                     templateUrl:'/laravel/xiaohu/public/tpl/page/user' //先在页面的script中寻找这个页面 若没有则像服务器端申请页面
+
                 })
 
                 .state('user.question',{

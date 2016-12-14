@@ -179,15 +179,42 @@ class CommonController extends Controller
         return true;
     }
 
+    /**
+     * 根据问题ID返回答案和答案对应的用户和答案所对应的点赞
+     *
+     */
+    public function getQuestionDetails()
+    {
+
+        $l=get_limit_and_skip(5);
+
+        if(!rq('question_id'))
+            return err('question_id is not exists');
+
+        if(!quesins()->find(rq('question_id')))
+            return err('the question is not exists');
+
+        $answers=answerins()->orderBy('created_at','desc')
+            ->where(['question_id'=>rq('question_id')])
+            ->with('user')
+            ->with('users')
+            ->limit($l['limit'])
+            ->skip($l['skip'])
+            ->get()
+            ->keyBy('id');
+
+        return suc($answers);
+    }
 
     /**
      * 测试 API
      * @
      */
-
     public function test()
     {
-        return test;
+        dd( quesins()->find(1)->with('answers_user_users')->get()[0]);
+
     }
+
 
 }

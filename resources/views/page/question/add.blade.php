@@ -1,8 +1,8 @@
-<div class="container" ng-controller="QuestionController">
+<div class="container" ng-controller="QuestionAddController">
     <div class="card">
         [: Question.add_data :]
         <h1>提问</h1>
-        <form ng-submit="Question.add_question()" name="question_add_form">
+        <form ng-submit="Question.addQuestion()" name="question_add_form">
             <div>
                 <label>问题</label>
                 <input

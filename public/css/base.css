@@ -162,6 +162,13 @@ button:hover{
     display: inline-block;
     margin-bottom: 0px;
 }
+.item-content a{
+    color: #101010;
+}
+.item-content a:hover{
+    text-decoration: none;
+}
+
 .comment-item-content{
     float: right;
     width: 94%;
@@ -220,3 +227,6 @@ button:hover{
  .btn-act{
     border-bottom: 3px solid red;
 }
+
+
+
