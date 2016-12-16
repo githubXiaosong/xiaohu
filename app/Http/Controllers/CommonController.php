@@ -186,13 +186,14 @@ class CommonController extends Controller
     public function getQuestionDetails()
     {
 
-        $l=get_limit_and_skip(5);
 
         if(!rq('question_id'))
             return err('question_id is not exists');
 
         if(!quesins()->find(rq('question_id')))
             return err('the question is not exists');
+
+        $l=get_limit_and_skip(5);
 
         $answers=answerins()->orderBy('created_at','desc')
             ->where(['question_id'=>rq('question_id')])
@@ -205,6 +206,62 @@ class CommonController extends Controller
 
         return suc($answers);
     }
+
+
+    /**
+     * @传入回答的ID
+     * @返回 问题 答案 和答案对应的回答者
+     */
+    public function getAnswerAndQuestion()
+    {
+        if(!rq('answer_id'))
+            return err('that no answer id!');
+
+        $answer=answerins()
+            ->where(['id'=>rq('answer_id')])
+            ->with('question')
+            ->with('user')
+            ->first();
+
+        if(!$answer)
+            return err('that no answer!');
+
+
+        return $answer;
+
+    }
+
+    /**
+     * @传入回答的ID
+     * @返回 list 和评论者
+     */
+    public function getComments()
+    {
+        if(!rq('answer_id'))
+            return err('that no answer id!');
+
+
+        if( ! answerins()->find(rq('answer_id')) )
+            return err('that no answer!');
+
+        $l=get_limit_and_skip(5);
+
+        $comments=commentins()
+            ->orderBy('created_at','desc')
+            ->where(['answer_id'=>rq('answer_id')])
+            ->with('user')
+            ->limit($l['limit'])
+            ->skip($l['skip'])
+            ->get()
+            ->keyBy('id');
+
+        $data=['status'=>1,'comments'=>$comments];
+
+        return $data;
+    }
+
+
+
 
     /**
      * 测试 API

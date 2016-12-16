@@ -83,9 +83,6 @@ angular.module('question',[])
                             }
 
 
-                            console.log(me.answers);
-
-
                         } else
                             console.log('Server Error');
                     },
@@ -99,7 +96,39 @@ angular.module('question',[])
             }
 
             me.setVote= function (vote,answer_id) {
-                AnswerService.setVote(vote,answer_id,me.answers);
+                AnswerService.setVote(vote,answer_id,me.answers,
+                    /**
+                     * 四个业务逻辑回调函数
+                     *
+                     */
+                    function (key) {
+                        me.answers[key].hasUp=true;
+                        me.answers[key].hasDown=false;
+                        me.answers[key]['timesUp']++;
+                        me.answers[key]['timesDown']--;
+                    },
+                    function (key) {
+                        me.answers[key].hasUp=false;
+                        me.answers[key].hasDown=true;
+                        me.answers[key]['timesUp']--;
+                        me.answers[key]['timesDown']++;
+                    },
+                    function (key) {
+                        me.answers[key].hasUp=false;
+                        me.answers[key].hasDown=true;
+                        me.answers[key]['timesUp']--;
+                        me.answers[key]['timesDown']++;
+                    },
+                    function (key) {
+                        me.answers[key].hasUp=true;
+                        me.answers[key].hasDown=false;
+                        me.answers[key]['timesUp']++;
+                        me.answers[key]['timesDown']--;
+                    },
+                    function (key) {
+                        return me.answers[key].id;
+                    }
+                );
             }
 
 

@@ -1,4 +1,4 @@
-angular.module('xiaohu',['ui.router','user','question','common'])
+angular.module('xiaohu',['ui.router','user','question','common','answer'])
 
 
     .config([
@@ -54,6 +54,27 @@ angular.module('xiaohu',['ui.router','user','question','common'])
                     url:'/details/:id',//这里的/不是相对根目录而是相对上一层
                     templateUrl:'/laravel/xiaohu/public/tpl/page/question/details' //先在页面的script中寻找这个页面 若没有则像服务器端申请页面
                 })
+
+
+            /**
+             * 关系问题的一系列controller
+             */
+                .state('answer',{
+                    abstract:true,
+                    /**
+                     * 若要是想在answer中指定controller 那么必须有这个controller 不然的话就会报错
+                     */
+                    controller:'AnswerController',
+                    url:'/answer',
+                    template:'<div ui-view></div>'
+                })
+
+                .state('answer.details',{
+                    url:'/details?answer_id',
+                    //template:'<div>asdasd</div>'
+                    templateUrl:'/laravel/xiaohu/public/tpl/page/answer/details'
+                })
+
 
 
             /**

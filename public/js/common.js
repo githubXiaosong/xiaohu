@@ -58,11 +58,41 @@ angular.module('common',['answer'])
              * 传入vote,answer_id 在之中更新data
              * @param vote,answer_id
              */
+
+
             me.setVote= function (vote,answer_id) {
                 /**
                  * AnswerService 可以统一处理getVote返回数据  但是AnswerService中的setVote方法和home页面的数据是耦合的 无法进行复用
                   */
-                //AnswerService.setVote(vote,answer_id,me.data);
+                AnswerService.setVote(vote,answer_id,me.data,
+                    function (key) {
+                        me.data[key].answer.hasUp=true;
+                        me.data[key].answer.hasDown=false;
+                        me.data[key].answer['timesUp']++;
+                        me.data[key].answer['timesDown']--;
+                    },
+                    function (key) {
+                        me.data[key].answer.hasUp=false;
+                        me.data[key].answer.hasDown=true;
+                        me.data[key].answer['timesUp']--;
+                        me.data[key].answer['timesDown']++;
+                    },
+                    function (key) {
+                        me.data[key].answer.hasUp=false;
+                        me.data[key].answer.hasDown=true;
+                        me.data[key].answer['timesUp']--;
+                        me.data[key].answer['timesDown']++;
+                    },
+                    function (key) {
+                        me.data[key].answer.hasUp=true;
+                        me.data[key].answer.hasDown=false;
+                        me.data[key].answer['timesUp']++;
+                        me.data[key].answer['timesDown']--;
+                    },
+                    function (key) {
+                        return me.data[key].answer.id;
+                    }
+                );
             }
 
         }

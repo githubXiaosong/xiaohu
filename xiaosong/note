@@ -254,12 +254,42 @@ service之中应该是包含所有相关逻辑跨越页面的
 
 belongsToMany和hasMany是相对应的  belongsToMang是本身model包含对应的字段   hasMany是对应的字段包含指向自己model的外键
 ---------------------
-belongTo        本身指向对应
+belongTo        本身有字段指向对应
 
-belongsToMany   本身指向对应
+belongsToMany   本身有字段指向对应
 
-hasMany         对应指向本身
+hasMany         对应有字段指向本身
 
-hasOne          对应指向本身
+hasOne          对应有字段指向本身
 -----------------
 
+1215
+改变自己对请求的看法:请求不一定会卡主界面的啊 可以先给用户应答 在后台请求 若请求不成功则反执行逻辑
+
+为了扩展  在写的一个模块的时候最好设计分层的controller 这样的话就是 方便统一性 也方便分层性 就算上层没有任何行为也为上层床啊金controller
+
+若要是想在answer中指定controller 那么必须有这个controller 不然的话就会报错 但是在页面中指定没有的controller却不会报错
+
+angular 页面也可以用? 和 &传递参数但是必须在template设定格式才行
+
+ui-sref 书写格式   ui-sref="answer.details({answer_id:item.answer.id})
+
+
+我觉得first() 比 get() 省资源
+
+
+-----------------单层的和多层的关系查询-------------------
+    public function answers()
+    {
+        return $this
+            ->hasMany('App\answer');
+    }
+
+    public function answers_user_users()
+    {
+        return $this
+            ->answers()
+            ->with('user')
+            ->with('users');
+    }
+-------------------------------------------------------

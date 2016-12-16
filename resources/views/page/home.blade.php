@@ -25,7 +25,7 @@
 
                 <div class="content-main text-warning" >
                     {{--有question_id 的是个回答 没有的是个问题--}}
-                    <p >
+                    <p ui-sref="answer.details({answer_id:item.answer.id})">
                         [: item.answer.content :]
                     </p>
 
