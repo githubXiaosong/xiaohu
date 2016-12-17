@@ -196,9 +196,8 @@ Route::group(['middleware'=>['web']],function(){//不开启web中间件是不能
         return view('page.user.answer');
     });
 
-    Route::any('tpl/page/answer/details',function(){
-        return view('page.answer.details');
-    });
+
+
 
 
 
@@ -225,7 +224,10 @@ Route::group(['middleware'=>['web']],function(){//不开启web中间件是不能
     /**
      *   测试API
      */
-    Route::any('api/test','CommonController@test');
+    Route::any('tpl/test/test',function(){
+        return view('test.test');
+    });
+
 
 });
 
