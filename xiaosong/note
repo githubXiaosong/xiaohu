@@ -329,6 +329,32 @@ html中给独立的指令赋值的时候不用加{{}} 但是给属性和其他�
 有一个巨大的坑:<drink1 flaveor=" flaveor "></drink1>       用=双向绑定字符串的时候
             <drink1 flaveor=" {{flaveor}} "></drink1>   用@单向绑定字符串的时候
 
-
-
 ---------------------------------------------------------
+1218
+
+customizable    可定制的
+collapse        摧毁 毁坏 折叠
+
+1219
+
+之前的angular-ui-bootstrap库的版本引入的太低啦!!!
+注意引入依赖的时候一定主注册依赖才行
+
+justified 有正当理由的 合理的 事出有因的
+representing 代表 体现 表现
+
+1220
+
+收展标配:    <span class="text-muted" style="cursor: pointer" ng-click="item.showComment=!item.showComment"> 展开评论 </span>
+                        <comment-add ng-if="item.showComment"></comment-add>
+
+@绑定传过去的东西是angluar不解析的 需要子html中解析  =绑定是会解析的
+
+注意 当元素的ng-if函数为false的时候是不会触发 link 函数的  只有当ng-if由false转为true的时候才会触发link函数
+
+angular 的表单验证用的都是name操作元素而不是id  name="comment_add_form"
+
+well墙 可以撑开页面的
+
+
+

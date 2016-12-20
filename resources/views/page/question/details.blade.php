@@ -31,6 +31,12 @@
                         <br>
                         <p class="list-group-item-text">[: item.content :]</p>
 
+                        <br>
+
+                        <div>
+                            <span class="text-muted" style="cursor: pointer" ng-click="item.showComment=!item.showComment"> 展开评论 </span>
+                        </div>
+                        <comment-add ng-if="item.showComment" answer-id="[: item.id :]"></comment-add>
                     </div>
                 </div>
 

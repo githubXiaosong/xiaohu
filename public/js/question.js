@@ -132,6 +132,8 @@ angular.module('question',[])
             }
 
 
+
+
         }
     ])
 
@@ -162,5 +164,73 @@ angular.module('question',[])
              */
             $scope.Question.getQuestion($stateParams)
             $scope.Question.getAnswersAndUserAndVote({'question_id':$stateParams.id});
+        }
+    ])
+
+    .directive('commentAdd',[
+        '$http',
+        function ($http) {
+            return {
+                scope:{
+                  answerId : '@'
+                },
+                templateUrl : '/laravel/xiaohu/public/directive/commentAdd.html',
+                link: function (scope, ele, attr) {
+
+                    /**
+                     * 请求评论
+                     */
+                    scope.commentGet= function () {
+
+                        $http.post(
+                            '/laravel/xiaohu/public/api/comment/read',
+                            {'answer_id':scope.answerId}
+                        ).then(
+                            function ($r) {
+                                scope.commentList=$r.data.data;
+
+                                scope.isNull=scope.commentList.length==0?true:false;
+
+
+                            },
+                            function ($e) {
+                                console.log($e);
+                            }
+                        )
+                    }
+
+                    /**
+                     * 先之执行一次
+                     */
+                    scope.commentGet();
+
+
+                    /**
+                     * 添加评论
+                      */
+                    scope.commentAdd= function () {
+
+                        $http.post(
+                            '/laravel/xiaohu/public/api/comment/add',
+                            {'answer_id':scope.answerId,'content':scope.commentContent}
+                        ).then(
+                            function ($r) {
+
+                            },
+                            function ($e) {
+                                console.log($e);
+                            }
+                        ).finally(
+                            function () {
+                                scope.commentContent=null;
+                                scope.commentGet();
+                            })
+                    }
+
+
+
+
+                }
+            }
         }
     ])

@@ -26,7 +26,7 @@ class Comment extends Model
 //      数据验证
         $validator=Validator::make(rq(),
             [
-                'content'=>'required|min:5|max:255'
+                'content'=>'required|min:1|max:255'
             ],
             [
                 'content.required'=>'content is required',
@@ -77,6 +77,11 @@ class Comment extends Model
         return ['status'=>1,'msg'=>'succeed'];
     }
 
+
+    /**
+     * 根据回答的ID或者评论的ID返回 评论和对应用户
+     * @return array
+     */
     public function read()
     {
         if( (rq('question_id')&&rq('answer_id')) || (!rq('question_id')&&!rq('answer_id')) )
@@ -86,14 +91,14 @@ class Comment extends Model
             $question=quesins()->find(rq('question_id'));
             if(!$question)
                 return ['status'=>'0','msg'=>'no that question'];
-            $data=$this->where(['question_id'=>rq('question_id')]);
+            $data=$this->where(['question_id'=>rq('question_id')])->with('user');
         }else{
             $answer=answerins()->find(rq('answer_id'));
             if(!$answer)
                 return ['status'=>'0','msg'=>'no that answer'];
-            $data=$this->where(['answer_id'=>rq('answer_id')]);
+            $data=$this->where(['answer_id'=>rq('answer_id')])->with('user');
         }
-        return ['status'=>'0','data'=>$data->get()->keyBy('id')];
+        return ['status'=>'1','data'=>$data->get()->keyBy('id')];
 
     }
 

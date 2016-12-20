@@ -4,7 +4,7 @@
  * Created by Administrator on 2016/12/17.
  */
 
-angular.module('test',[])
+angular.module('test', ['ui.bootstrap'])
 
     .controller('testController',[
         '$scope',
@@ -170,6 +170,47 @@ angular.module('test',[])
         }
     })
 
+
+
+   .controller('CollapseDemoCtrl', function ($scope) {
+        $scope.isNavCollapsed = true;
+        $scope.isCollapsed = false;
+        $scope.isCollapsedHorizontal = false;
+    })
+
+
+
+    .controller('AlertDemoCtrl', function ($scope) {
+    $scope.alerts = [
+        { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
+        { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
+    ];
+
+    $scope.addAlert = function() {
+        $scope.alerts.push({msg: 'Another alert!'});
+    };
+
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
+})
+
+.controller('TabsDemoCtrl', function ($scope, $window) {
+    $scope.tabs = [
+        { title:'Dynamic Title 1', content:'Dynamic content 1' },
+        { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
+    ];
+
+    $scope.alertMe = function() {
+        setTimeout(function() {
+            $window.alert('You\'ve selected the alert tab!');
+        });
+    };
+
+    $scope.model = {
+        name: 'Tabs'
+    };
+});
 
 
 

@@ -201,7 +201,7 @@ button:hover{
 }
 .list-group-item button:disabled,
 .left-set button:disabled{
-    background: rgba(200,100,100,.3);
+    background: #e0e0e0;
 }
 
 .content-main p{
@@ -221,6 +221,7 @@ button:hover{
 * 用户详情页面CSS
 */
 
+
 .user-ind button{
     padding-bottom: 15px;
 }
@@ -230,6 +231,4 @@ button:hover{
  .btn-act{
     border-bottom: 3px solid red;
 }
-
-
 
